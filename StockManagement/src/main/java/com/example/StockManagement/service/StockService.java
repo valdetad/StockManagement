@@ -31,25 +31,17 @@ public class StockService {
     }
 
     private ByteArrayInputStream createExcel(List<Stock> stocks, String sheetName) {
-        return createExcelWorkbook(new WorkbookOperation() {
-            @Override
-            public void performOperation(Workbook workbook) {
-                Sheet sheet = workbook.createSheet(sheetName);
-                writeStockDataToSheet(sheet, stocks);
-            }
+        return createExcelWorkbook(workbook -> {
+            Sheet sheet = workbook.createSheet(sheetName);
+            writeStockDataToSheet(sheet, stocks);
         });
     }
 
     private ByteArrayInputStream createExcelForAllMarkets(Map<Long, List<Stock>> stocksByMarket) {
-        return createExcelWorkbook(new WorkbookOperation() {
-            @Override
-            public void performOperation(Workbook workbook) {
-                for (Map.Entry<Long, List<Stock>> entry : stocksByMarket.entrySet()) {
-                    Long marketId = entry.getKey();
-                    List<Stock> marketStocks = entry.getValue();
-                    Sheet sheet = workbook.createSheet("Market " + marketId);
-                    writeStockDataToSheet(sheet, marketStocks);
-                }
+        return createExcelWorkbook(workbook -> {
+            for (Map.Entry<Long, List<Stock>> entry : stocksByMarket.entrySet()) {
+                Sheet sheet = workbook.createSheet("Market " + entry.getKey());
+                writeStockDataToSheet(sheet, entry.getValue());
             }
         });
     }

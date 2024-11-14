@@ -19,12 +19,6 @@ public class ProductService {
     @Autowired
     private ImportExportService importExportService;
 
-    @Autowired
-    public ProductService(ProductRepository productRepository, ImportExportService importExportService) {
-        this.productRepository = productRepository;
-        this.importExportService = importExportService;
-    }
-
     public List<Product> findAll() {
         return productRepository.findAll();
     }
@@ -33,28 +27,27 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public void saveAll(List<Product> products) {
-        if (products != null && !products.isEmpty()) {
-            productRepository.saveAll(products);
-        }
-    }
-
     public Product saveProduct(Product product) {
         return productRepository.save(product);
     }
 
     public void updateProduct(Product product) {
-        productRepository.save(product); // This will update the product if it exists
+        productRepository.save(product); // This updates if product exists
     }
 
     public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+        }
     }
 
-    public List<Product> importProducts(MultipartFile file) throws Exception {
-        List<Product> products = importExportService.parseProductExcel(file);
-        saveAll(products);
-        return products;
+    public List<Product> importProducts(MultipartFile file) {
+        try {
+            List<Product> products = importExportService.parseProductExcel(file);
+            return productRepository.saveAll(products); // Saves and returns saved products
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to import products from file: " + e.getMessage(), e);
+        }
     }
 
     public ByteArrayInputStream exportProductsToExcel() {

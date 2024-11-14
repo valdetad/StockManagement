@@ -13,7 +13,15 @@ public class MarketService {
     @Autowired
     private MarketRepository marketRepository;
 
-    public List<Market> findAll(){
+    public MarketService(MarketRepository marketRepository) {
+        this.marketRepository = marketRepository;
+    }
+
+    public List<Market> findAll() {
         return marketRepository.findAll();
+    }
+
+    public void deleteMarket(Long id) {
+        marketRepository.deleteById(id);
     }
 }

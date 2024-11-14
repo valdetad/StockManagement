@@ -23,14 +23,11 @@ import java.util.Date;
 @Service
 public class PurchaseService {
 
-    @Autowired
-    private MarketRepository marketRepository;
-
-    @Autowired
+    private final MarketRepository marketRepository;
     private final StockRepository stockRepository;
 
-    public PurchaseService(MarketRepository marketRepository, StockRepository stockRepository
-    ) {
+    @Autowired
+    public PurchaseService(MarketRepository marketRepository, StockRepository stockRepository) {
         this.marketRepository = marketRepository;
         this.stockRepository = stockRepository;
     }
@@ -52,6 +49,7 @@ public class PurchaseService {
             document.close();
             return new ByteArrayInputStream(out.toByteArray());
         } catch (DocumentException | IOException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -86,12 +84,17 @@ public class PurchaseService {
         double overallTotal = 0.0;
 
         for (Purchase purchase : market.getPurchases()) {
+            System.out.println("Processing Purchase ID: " + purchase.getId());
+
             for (Product product : purchase.getProducts()) {
                 int quantity = stockRepository.findByProductIdAndMarketId(product.getId(), market.getId())
                         .map(Stock::getQuantity)
                         .orElse(0);
                 double price = product.getPrice();
                 double total = quantity * price;
+
+                // Debug Statements
+                System.out.println("Product: " + product.getName() + ", Quantity: " + quantity + ", Price: " + price + ", Total: " + total);
 
                 table.addCell(product.getName());
                 table.addCell(String.valueOf(quantity));
@@ -102,6 +105,7 @@ public class PurchaseService {
             }
         }
 
+        System.out.println("Overall Total: " + overallTotal);
         return overallTotal;
     }
 

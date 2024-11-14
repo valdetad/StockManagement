@@ -7,8 +7,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name="market")
-
+@Table(name = "market")
 public class Market {
 
     @Id
@@ -16,8 +15,7 @@ public class Market {
     private Long id;
 
     private String name;
-    //private String location;
 
-    @OneToMany(mappedBy = "market")
+    @OneToMany(mappedBy = "market", fetch = FetchType.EAGER)  // Eager fetching for debugging
     private Set<Purchase> purchases;
 }
