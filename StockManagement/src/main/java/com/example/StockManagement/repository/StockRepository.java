@@ -1,4 +1,3 @@
-
 package com.example.StockManagement.repository;
 
 import com.example.StockManagement.data.model.Stock;
@@ -12,6 +11,8 @@ import java.util.Optional;
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
     Optional<Stock> findByProductIdAndMarketId(Long productId, Long marketId);
+
     List<Stock> findByMarketId(Long marketId);
-    Optional<Stock> findByProductId(Long id);
+
+    Optional<Stock> findByProductId(Long productId);
 }
