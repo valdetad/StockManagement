@@ -13,10 +13,6 @@ public class MarketService {
     @Autowired
     private MarketRepository marketRepository;
 
-    public MarketService(MarketRepository marketRepository) {
-        this.marketRepository = marketRepository;
-    }
-
     public List<Market> findAll() {
         return marketRepository.findAll();
     }
