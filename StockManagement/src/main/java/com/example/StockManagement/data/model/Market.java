@@ -16,6 +16,6 @@ public class Market {
 
     private String name;
 
-    @OneToMany(mappedBy = "market", fetch = FetchType.EAGER)  // Eager fetching for debugging
+    @OneToMany(mappedBy = "market", fetch = FetchType.EAGER)
     private Set<Purchase> purchases;
 }
