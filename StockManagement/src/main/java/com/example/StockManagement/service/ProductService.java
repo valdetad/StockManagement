@@ -32,7 +32,11 @@ public class ProductService {
     }
 
     public void updateProduct(Product product) {
-        productRepository.save(product); // This updates if product exists
+        if (productRepository.existsById(product.getId())) {
+            productRepository.save(product);
+        } else {
+            throw new RuntimeException("Product with ID " + product.getId() + " not found.");
+        }
     }
 
     public void deleteProduct(Long id) {
