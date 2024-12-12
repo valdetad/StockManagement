@@ -4,7 +4,6 @@ import com.example.StockManagement.data.model.Stock;
 import com.example.StockManagement.repository.StockRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -16,8 +15,15 @@ import java.util.stream.Collectors;
 @Service
 public class StockService {
 
-    @Autowired
-    private StockRepository stockRepository;
+    private final StockRepository stockRepository;
+
+    public StockService(StockRepository stockRepository) {
+        this.stockRepository = stockRepository;
+    }
+
+    public Stock saveStock(Stock stock) {
+        return stockRepository.save(stock);
+    }
 
     public ByteArrayInputStream exportStockToExcel(Long marketId) {
         List<Stock> stocks = stockRepository.findByMarketId(marketId);
@@ -52,7 +58,7 @@ public class StockService {
             workbook.write(out);
             return new ByteArrayInputStream(out.toByteArray());
         } catch (Exception e) {
-            return null;
+            throw new RuntimeException("Failed to create Excel workbook", e);
         }
     }
 
