@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -64,5 +65,11 @@ public class ProductController {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=products.xlsx");
         return ResponseEntity.ok().headers(headers).body(new InputStreamResource(byteArrayInputStream));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String name) {
+        List<Product> products = productService.searchProductsByName(name);
+        return ResponseEntity.ok(products);
     }
 }

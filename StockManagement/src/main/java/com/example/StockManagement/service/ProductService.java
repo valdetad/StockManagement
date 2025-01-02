@@ -27,6 +27,10 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public List<Product> searchProductsByName(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name);
+    }
+
     public Product saveProduct(Product product) {
         return productRepository.save(product);
     }
