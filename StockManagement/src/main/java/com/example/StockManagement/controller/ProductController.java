@@ -25,18 +25,12 @@ public class ProductController {
         return productService.findById(id);
     }
 
-    @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        try {
-            Product savedProduct = productService.saveProduct(product);
-            return ResponseEntity.ok(savedProduct);
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError()
-                    .body(null);
-        }
+    @PostMapping("/create")
+    public Product createProduct(@RequestBody Product product) {
+        return productService.saveProduct(product);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         if (productService.findById(id).isPresent()) {
             productService.deleteProduct(id);
