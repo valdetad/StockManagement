@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<Object> deleteProduct(@PathVariable Long id) {
         if (productService.findById(id).isPresent()) {
             productService.deleteProduct(id);
             return ResponseEntity.noContent().build();
@@ -39,7 +39,13 @@ public class ProductController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/upload")
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String name) {
+        List<Product> products = productService.searchProductsByName(name);
+        return ResponseEntity.ok(products);
+    }
+
+    @PostMapping("/import")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) {
         try {
             productService.importProducts(file);
@@ -56,11 +62,5 @@ public class ProductController {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=products.xlsx");
         return ResponseEntity.ok().headers(headers).body(new InputStreamResource(byteArrayInputStream));
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<List<Product>> searchProducts(@RequestParam String name) {
-        List<Product> products = productService.searchProductsByName(name);
-        return ResponseEntity.ok(products);
     }
 }
