@@ -2,6 +2,7 @@ package com.example.StockManagement.controller;
 
 import com.example.StockManagement.data.model.Stock;
 import com.example.StockManagement.service.StockService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,8 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping("/stock")
 public class StockController {
 
-    private final StockService stockService;
-
-    public StockController(StockService stockService) {
-        this.stockService = stockService;
-    }
+    @Autowired
+    private StockService stockService;
 
     @PostMapping
     public ResponseEntity<Stock> addStock(@RequestBody Stock stock) {

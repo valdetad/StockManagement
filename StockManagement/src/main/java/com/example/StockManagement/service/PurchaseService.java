@@ -40,7 +40,7 @@ public class PurchaseService {
 
             String marketName = marketRepository.findById(marketId)
                     .map(Market::getName)
-                    .orElse("Unknown Market");
+                    .orElse("Market");
             String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
             addMarketInfo(document, marketName, currentDate);
@@ -69,7 +69,15 @@ public class PurchaseService {
                 .map(market -> addMarketPurchases(table, market))
                 .orElse(0.0);
 
-        addOverallTotalRow(table, overallTotal);
+        if (overallTotal > 0) {
+            addOverallTotalRow(table, overallTotal);
+        } else {
+            table.addCell("No purchases found for this market.");
+            table.addCell("");
+            table.addCell("");
+            table.addCell("");
+        }
+
         document.add(table);
     }
 
@@ -83,8 +91,14 @@ public class PurchaseService {
     private double addMarketPurchases(PdfPTable table, Market market) {
         double overallTotal = 0.0;
 
+        if (market.getPurchases() == null || market.getPurchases().isEmpty()) {
+            return overallTotal;
+        }
+
         for (Purchase purchase : market.getPurchases()) {
-            System.out.println("Processing Purchase ID: " + purchase.getId());
+            if (purchase.getProducts() == null || purchase.getProducts().isEmpty()) {
+                continue;
+            }
 
             for (Product product : purchase.getProducts()) {
                 int quantity = stockRepository.findByProductIdAndMarketId(product.getId(), market.getId())
@@ -93,19 +107,17 @@ public class PurchaseService {
                 double price = product.getPrice();
                 double total = quantity * price;
 
-                // Debug Statements
-                System.out.println("Product: " + product.getName() + ", Quantity: " + quantity + ", Price: " + price + ", Total: " + total);
+                if (quantity > 0) {
+                    table.addCell(product.getName());
+                    table.addCell(String.valueOf(quantity));
+                    table.addCell(String.format("%.2f", price));
+                    table.addCell(String.format("%.2f", total));
 
-                table.addCell(product.getName());
-                table.addCell(String.valueOf(quantity));
-                table.addCell(String.format("%.2f", price));
-                table.addCell(String.format("%.2f", total));
-
-                overallTotal += total;
+                    overallTotal += total;
+                }
             }
         }
 
-        System.out.println("Overall Total: " + overallTotal);
         return overallTotal;
     }
 
