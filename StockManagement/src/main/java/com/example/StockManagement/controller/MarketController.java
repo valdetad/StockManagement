@@ -2,6 +2,7 @@ package com.example.StockManagement.controller;
 
 import com.example.StockManagement.data.model.Market;
 import com.example.StockManagement.service.MarketService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +13,8 @@ import java.util.Map;
 @RequestMapping("/market")
 public class MarketController {
 
-    private final MarketService marketService;
-
-    public MarketController(MarketService marketService) {
-        this.marketService = marketService;
-    }
+    @Autowired
+    private MarketService marketService;
 
     @GetMapping
     public List<Market> getAllMarkets() {
