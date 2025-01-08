@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 
-
 @RestController
 @RequestMapping("/purchase")
 public class PurchaseController {
 
+    private final PurchaseService purchaseService;
+
     @Autowired
-    private PurchaseService purchaseService;
+    public PurchaseController(PurchaseService purchaseService) {
+        this.purchaseService = purchaseService;
+    }
 
     @GetMapping("/export")
     public ResponseEntity<?> exportPurchases(@RequestParam("marketId") Long marketId) {
