@@ -20,7 +20,6 @@ public class ProductCreateDto {
     @NotNull(message = "PRODUCT_NAME_REQUIRED")
     private String name;
 
-    @NotBlank(message = "PRODUCT_CATEGORY_REQUIRED")
     private Category category;
 
     @NotBlank(message = "PRODUCT_PRICE_REQUIRED")
