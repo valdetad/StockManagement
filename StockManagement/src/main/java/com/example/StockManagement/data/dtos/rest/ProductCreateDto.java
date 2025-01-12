@@ -1,6 +1,6 @@
-package com.example.StockManagement.data.dtos;
+package com.example.StockManagement.data.dtos.rest;
 
-import com.example.StockManagement.data.model.Category;
+import com.example.StockManagement.data.model.rest.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

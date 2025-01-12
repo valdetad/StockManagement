@@ -1,6 +1,6 @@
-package com.example.StockManagement.data.dtos;
+package com.example.StockManagement.data.dtos.rest;
 
-import com.example.StockManagement.data.model.PurchaseStatus;
+import com.example.StockManagement.data.model.rest.PurchaseStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

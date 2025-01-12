@@ -1,4 +1,4 @@
-package com.example.StockManagement.data.model;
+package com.example.StockManagement.data.model.rest;
 
 public enum Category {
     PHONE,

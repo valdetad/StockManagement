@@ -1,7 +1,7 @@
 package com.example.StockManagement.controller;
 
-import com.example.StockManagement.data.model.Product;
-import com.example.StockManagement.service.ProductService;
+import com.example.StockManagement.data.model.rest.Product;
+import com.example.StockManagement.service.rest.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;

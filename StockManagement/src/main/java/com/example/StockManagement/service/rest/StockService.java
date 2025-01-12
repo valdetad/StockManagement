@@ -1,10 +1,9 @@
-package com.example.StockManagement.service;
+package com.example.StockManagement.service.rest;
 
-import com.example.StockManagement.data.model.Stock;
-import com.example.StockManagement.repository.StockRepository;
+import com.example.StockManagement.data.model.rest.Stock;
+import com.example.StockManagement.repository.rest.StockRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;

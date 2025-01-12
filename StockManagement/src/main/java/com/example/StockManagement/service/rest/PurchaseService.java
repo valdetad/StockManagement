@@ -1,11 +1,11 @@
-package com.example.StockManagement.service;
+package com.example.StockManagement.service.rest;
 
-import com.example.StockManagement.data.model.Product;
-import com.example.StockManagement.data.model.Purchase;
-import com.example.StockManagement.data.model.Market;
-import com.example.StockManagement.data.model.Stock;
-import com.example.StockManagement.repository.MarketRepository;
-import com.example.StockManagement.repository.StockRepository;
+import com.example.StockManagement.data.model.rest.Product;
+import com.example.StockManagement.data.model.rest.Purchase;
+import com.example.StockManagement.data.model.rest.Market;
+import com.example.StockManagement.data.model.rest.Stock;
+import com.example.StockManagement.repository.rest.MarketRepository;
+import com.example.StockManagement.repository.rest.StockRepository;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
