@@ -1,4 +1,4 @@
-package com.example.StockManagement.controller;
+package com.example.StockManagement.controller.rest;
 
 import com.example.StockManagement.service.rest.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;

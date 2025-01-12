@@ -1,4 +1,4 @@
-package com.example.StockManagement.controller;
+package com.example.StockManagement.controller.rest;
 
 import com.example.StockManagement.data.model.rest.Product;
 import com.example.StockManagement.service.rest.ProductService;
