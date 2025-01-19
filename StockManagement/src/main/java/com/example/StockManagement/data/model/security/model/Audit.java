@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class Audit {
 
     @Column(name = "created_by", updatable = false)
-    private String createdBy; // TODO can we do this to be User instead of users username
+    private String createdBy;
 
     @Column(name = "updated_by")
     private String updatedBy;
@@ -32,7 +32,6 @@ public class Audit {
     @Column(name = "updated_date")
     private LocalDateTime updateDate;
 
-    // TODO add deleted
     @Column(name = "deleted_by", nullable = false)
     private boolean deleted = false;
 
