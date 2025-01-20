@@ -24,6 +24,7 @@ public class Purchase {
     @JoinColumn(name = "market_id", nullable = false)
     private Market market;
 
+
     @ManyToMany
     @JoinTable(
             name = "purchase_product",

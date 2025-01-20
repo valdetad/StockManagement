@@ -5,6 +5,7 @@ import com.example.StockManagement.data.model.rest.Purchase;
 import com.example.StockManagement.data.model.rest.Market;
 import com.example.StockManagement.data.model.rest.Stock;
 import com.example.StockManagement.repository.rest.MarketRepository;
+import com.example.StockManagement.repository.rest.PurchaseRepository;
 import com.example.StockManagement.repository.rest.StockRepository;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -19,16 +20,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PurchaseService {
 
     private final MarketRepository marketRepository;
+    private final PurchaseRepository purchaseRepository;
     private final StockRepository stockRepository;
 
     @Autowired
-    public PurchaseService(MarketRepository marketRepository, StockRepository stockRepository) {
+    public PurchaseService(MarketRepository marketRepository, PurchaseRepository purchaseRepository, StockRepository stockRepository) {
         this.marketRepository = marketRepository;
+        this.purchaseRepository = purchaseRepository;
         this.stockRepository = stockRepository;
     }
 
@@ -38,13 +43,21 @@ public class PurchaseService {
             PdfWriter.getInstance(document, out);
             document.open();
 
-            String marketName = marketRepository.findById(marketId)
-                    .map(Market::getName)
-                    .orElse("Market");
+            Optional<Market> marketOpt = marketRepository.findById(marketId);
+            if (marketOpt.isEmpty()) {
+                document.add(new Paragraph("Market with ID " + marketId + " NOT FOUND."));
+                document.close();
+                return new ByteArrayInputStream(out.toByteArray());
+            }
+
+            Market market = marketOpt.get();
+            List<Purchase> purchases = purchaseRepository.findByMarketId(marketId);
+            market.setPurchases(purchases);
+
             String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
-            addMarketInfo(document, marketName, currentDate);
-            addPurchaseTable(document, marketId);
+            addMarketInfo(document, market.getName(), currentDate);
+            addPurchaseTable(document, market);
 
             document.close();
             return new ByteArrayInputStream(out.toByteArray());
@@ -60,14 +73,12 @@ public class PurchaseService {
         document.add(new Paragraph(" "));
     }
 
-    private void addPurchaseTable(Document document, Long marketId) throws DocumentException {
+    private void addPurchaseTable(Document document, Market market) throws DocumentException {
         PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100);
         addTableHeaders(table);
 
-        double overallTotal = marketRepository.findById(marketId)
-                .map(market -> addMarketPurchases(table, market))
-                .orElse(0.0);
+        double overallTotal = addMarketPurchases(table, market);
 
         if (overallTotal > 0) {
             addOverallTotalRow(table, overallTotal);
@@ -101,9 +112,13 @@ public class PurchaseService {
             }
 
             for (Product product : purchase.getProducts()) {
-                int quantity = stockRepository.findByProductIdAndMarketId(product.getId(), market.getId())
-                        .map(Stock::getQuantity)
-                        .orElse(0);
+                Optional<Stock> stockOpt = stockRepository.findByProductIdAndMarketId(product.getId(), market.getId());
+
+                if (stockOpt.isEmpty()) {
+                    continue;
+                }
+
+                int quantity = stockOpt.get().getQuantity();
                 double price = product.getPrice();
                 double total = quantity * price;
 
@@ -112,7 +127,6 @@ public class PurchaseService {
                     table.addCell(String.valueOf(quantity));
                     table.addCell(String.format("%.2f", price));
                     table.addCell(String.format("%.2f", total));
-
                     overallTotal += total;
                 }
             }
