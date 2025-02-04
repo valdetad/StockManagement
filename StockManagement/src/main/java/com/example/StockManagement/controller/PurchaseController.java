@@ -19,13 +19,13 @@ public class PurchaseController {
 
     @GetMapping("/export")
     public ResponseEntity<?> exportPurchases(@RequestParam("marketId") Long marketId) {
-        System.out.println("📥 Received request to export purchases for marketId: " + marketId);
+        System.out.println("Received request to export purchases for marketId: " + marketId);
 
         ByteArrayInputStream bais = purchaseService.exportPurchasesToPdf(marketId);
 
         if (bais == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("❌ Failed to generate PDF for marketId: " + marketId);
+                    .body("Failed to generate PDF for marketId: " + marketId);
         }
 
         HttpHeaders headers = new HttpHeaders();
