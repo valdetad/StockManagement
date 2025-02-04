@@ -31,7 +31,6 @@ public class Audit {
     @Column(name = "updated_date")
     private LocalDateTime updateDate;
 
-    // TODO add deleted
     @Column(name = "deleted_by", nullable = false)
     private boolean deleted = false;
 
