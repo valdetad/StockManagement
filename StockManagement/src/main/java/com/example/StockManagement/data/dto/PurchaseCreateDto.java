@@ -1,4 +1,4 @@
-package com.example.StockManagement.data.dtos;
+package com.example.StockManagement.data.dto;
 
 import com.example.StockManagement.data.model.PurchaseStatus;
 import jakarta.validation.constraints.NotBlank;

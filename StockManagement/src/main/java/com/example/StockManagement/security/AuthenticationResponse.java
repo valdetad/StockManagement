@@ -1,4 +1,4 @@
-package com.example.StockManagement.data.dtos;
+package com.example.StockManagement.security;
 
 import lombok.Getter;
 import lombok.Setter;

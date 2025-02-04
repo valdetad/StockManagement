@@ -1,7 +1,7 @@
-package com.example.StockManagement.controller.rest;
+package com.example.StockManagement.controller;
 
 import com.example.StockManagement.data.model.Market;
-import com.example.StockManagement.service.MarketService;
+import com.example.StockManagement.services.MarketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

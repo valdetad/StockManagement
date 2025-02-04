@@ -1,6 +1,5 @@
-package com.example.StockManagement.config;
+package com.example.StockManagement.security;
 
-import com.example.StockManagement.filter.JwtAuthenticationFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

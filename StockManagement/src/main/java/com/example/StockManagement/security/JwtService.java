@@ -1,4 +1,4 @@
-package com.example.StockManagement.service.security;
+package com.example.StockManagement.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.example.StockManagement.service;
+package com.example.StockManagement.services;
 
 import com.example.StockManagement.data.model.Market;
 import com.example.StockManagement.repository.MarketRepository;

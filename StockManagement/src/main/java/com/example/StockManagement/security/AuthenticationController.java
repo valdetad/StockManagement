@@ -1,9 +1,6 @@
-package com.example.StockManagement.controller.security;
+package com.example.StockManagement.security;
 
-import com.example.StockManagement.data.dtos.AuthenticationResponse;
 import com.example.StockManagement.data.model.User;
-import com.example.StockManagement.service.security.AuthenticationService;
-import com.example.StockManagement.service.security.JwtService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

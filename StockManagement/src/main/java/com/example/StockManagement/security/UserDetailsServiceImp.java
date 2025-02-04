@@ -1,4 +1,4 @@
-package com.example.StockManagement.service.security;
+package com.example.StockManagement.security;
 
 import com.example.StockManagement.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

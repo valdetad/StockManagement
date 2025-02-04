@@ -1,6 +1,5 @@
-package com.example.StockManagement.service.security;
+package com.example.StockManagement.security;
 
-import com.example.StockManagement.data.dtos.AuthenticationResponse;
 import com.example.StockManagement.data.model.User;
 import com.example.StockManagement.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
