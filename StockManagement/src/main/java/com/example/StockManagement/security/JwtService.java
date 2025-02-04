@@ -62,10 +62,11 @@ public class JwtService {
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // will last 7 days
+                .setExpiration(new Date(System.currentTimeMillis() + (5L * 365 * 24 * 60 * 60 * 1000))) // will last 5 years
                 .signWith(getSigninKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
 
     private SecretKey getSigninKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
