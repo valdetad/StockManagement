@@ -1,5 +1,6 @@
 package com.example.StockManagement.data.model;
 
+import com.example.StockManagement.data.constants.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

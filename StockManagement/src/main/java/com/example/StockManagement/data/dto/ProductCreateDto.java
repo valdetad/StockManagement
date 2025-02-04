@@ -1,6 +1,6 @@
 package com.example.StockManagement.data.dto;
 
-import com.example.StockManagement.data.model.Category;
+import com.example.StockManagement.data.constants.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
