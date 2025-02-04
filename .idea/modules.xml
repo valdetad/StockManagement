@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Stock-Management.iml" filepath="$PROJECT_DIR$/.idea/Stock-Management.iml" />
       <module fileurl="file://$PROJECT_DIR$/StockManagement/StockManagement.iml" filepath="$PROJECT_DIR$/StockManagement/StockManagement.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/StockManagement - Copy.iml" filepath="$PROJECT_DIR$/.idea/StockManagement - Copy.iml" />
     </modules>
   </component>
 </project>
