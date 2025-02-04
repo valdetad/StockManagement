@@ -40,9 +40,8 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Product>> searchProducts(@RequestParam String name) {
-        List<Product> products = productService.searchProductsByName(name);
-        return ResponseEntity.ok(products);
+    public List<Product> searchProducts(@RequestParam String name) {
+        return productService.searchProductsByName(name);
     }
 
     @PostMapping("/import")
