@@ -1,10 +1,9 @@
-package com.example.StockManagement.data.model.rest;
+package com.example.StockManagement.data.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity

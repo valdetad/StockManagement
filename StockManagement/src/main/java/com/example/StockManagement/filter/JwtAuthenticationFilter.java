@@ -1,7 +1,7 @@
 package com.example.StockManagement.filter;
 
-import com.example.StockManagement.service.JwtService;
-import com.example.StockManagement.service.UserDetailsServiceImp;
+import com.example.StockManagement.service.security.JwtService;
+import com.example.StockManagement.service.security.UserDetailsServiceImp;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

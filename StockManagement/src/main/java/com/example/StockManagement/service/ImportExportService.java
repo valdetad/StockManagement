@@ -1,6 +1,6 @@
-package com.example.StockManagement.service.rest;
+package com.example.StockManagement.service;
 
-import com.example.StockManagement.data.model.rest.Product;
+import com.example.StockManagement.data.model.Product;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;

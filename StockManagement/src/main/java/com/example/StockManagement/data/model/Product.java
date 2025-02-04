@@ -1,4 +1,4 @@
-package com.example.StockManagement.data.model.rest;
+package com.example.StockManagement.data.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

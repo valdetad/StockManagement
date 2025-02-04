@@ -1,6 +1,6 @@
-package com.example.StockManagement.repository.rest;
+package com.example.StockManagement.repository;
 
-import com.example.StockManagement.data.model.rest.Product;
+import com.example.StockManagement.data.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

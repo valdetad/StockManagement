@@ -1,6 +1,6 @@
 package com.example.StockManagement.controller.rest;
 
-import com.example.StockManagement.service.rest.PurchaseService;
+import com.example.StockManagement.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;

@@ -1,4 +1,4 @@
-package com.example.StockManagement.service;
+package com.example.StockManagement.service.security;
 
 import com.example.StockManagement.data.dtos.AuthenticationResponse;
 import com.example.StockManagement.data.model.User;

@@ -1,4 +1,4 @@
-package com.example.StockManagement.data.dtos.rest;
+package com.example.StockManagement.data.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

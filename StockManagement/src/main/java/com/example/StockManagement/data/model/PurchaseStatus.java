@@ -1,4 +1,4 @@
-package com.example.StockManagement.data.model.rest;
+package com.example.StockManagement.data.model;
 
 public enum PurchaseStatus {
     ONGOING,

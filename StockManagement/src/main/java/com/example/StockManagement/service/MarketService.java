@@ -1,7 +1,7 @@
-package com.example.StockManagement.service.rest;
+package com.example.StockManagement.service;
 
-import com.example.StockManagement.data.model.rest.Market;
-import com.example.StockManagement.repository.rest.MarketRepository;
+import com.example.StockManagement.data.model.Market;
+import com.example.StockManagement.repository.MarketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
