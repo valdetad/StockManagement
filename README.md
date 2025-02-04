@@ -42,11 +42,11 @@ cd StockManagement
 4️⃣ Test APIs using Postman
 
 # Security
-JWT-based Authentication (Bearer Token)
-Role-Based Access (ADMIN, USER)
-Secure API Endpoints
+- JWT-based Authentication (Bearer Token)
+- Role-Based Access (ADMIN, USER)
+- Secure API Endpoints
 
 # Contributing
-Fork the repo & create a new branch.
-Make your changes & commit.
-Open a Pull Request
+- Fork the repo & create a new branch.
+- Make your changes & commit.
+- Open a Pull Request
