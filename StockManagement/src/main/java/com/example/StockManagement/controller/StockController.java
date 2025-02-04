@@ -33,14 +33,14 @@ public class StockController {
     public ResponseEntity<InputStreamResource> exportStock(@PathVariable Long marketId) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
         String filename = "stock-data-for-market-" + marketId + "_" + LocalDateTime.now().format(formatter) + ".xlsx";
-        ByteArrayInputStream bais = stockService.exportStockToExcel(marketId);
-        return generateExportResponse(bais, filename);
+        ByteArrayInputStream basis = stockService.exportStockToExcel(marketId);
+        return generateExportResponse(basis, filename);
     }
 
     @GetMapping("/export-to-excel")
     public ResponseEntity<InputStreamResource> exportAllStock() {
-        ByteArrayInputStream bais = stockService.exportAllStockToExcel();
-        return generateExportResponse(bais, "all-stock-data.xlsx");
+        ByteArrayInputStream basis = stockService.exportAllStockToExcel();
+        return generateExportResponse(basis, "all-stock-data.xlsx");
     }
 
     private ResponseEntity<InputStreamResource> generateExportResponse(ByteArrayInputStream bais, String filename) {
