@@ -34,12 +34,12 @@ The Stock Management System helps businesses to manage their products, stock, ma
 
 # Installation & Setup
 
-1️⃣ Clone the repository
-git clone https://github.com/your-repo/StockManagement.git
-cd StockManagement
-2️⃣ Configure MySQL in application.properties
-3️⃣ Run the Application -> mvn spring-boot:run
-4️⃣ Test APIs using Postman
+* 1️⃣ Clone the repository
+* git clone https://github.com/your-repo/StockManagement.git
+* cd StockManagement
+* 2️⃣ Configure MySQL in application.properties
+* 3️⃣ Run the Application -> mvn spring-boot:run
+* 4️⃣ Test APIs using Postman
 
 # Security
 - JWT-based Authentication (Bearer Token)
