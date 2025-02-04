@@ -14,8 +14,6 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "12598778c7c58301dc707bd60e2d1365d8953e8ba1f87advjjy4";
-
     public String extractUsername(String accessToken) {
         return extractClaim(accessToken, Claims::getSubject);
     }
@@ -53,7 +51,7 @@ public class JwtService {
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // token lasts 1 day
                 .signWith(getSigninKey())
                 .compact();
     }
@@ -62,16 +60,15 @@ public class JwtService {
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + (5L * 365 * 24 * 60 * 60 * 1000))) // will last 5 years
+                .setExpiration(new Date(System.currentTimeMillis() + (5L * 365 * 24 * 60 * 60 * 1000))) // token lasts 5 years
                 .signWith(getSigninKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
 
     private SecretKey getSigninKey() {
+        String SECRET_KEY = "12598778c7c58301dc707bd60e2d1365d8953e8ba1f87advjjy4";
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
-
 }
